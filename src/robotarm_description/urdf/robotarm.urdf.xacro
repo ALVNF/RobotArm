@@ -7,6 +7,7 @@
 
     <xacro:include filename="$(find robotarm_description)/urdf/robotarm_gazebo.xacro" />
     <xacro:include filename="$(find robotarm_description)/urdf/robotarm_ros2_control.xacro" />
+    <xacro:include filename="$(find robotarm_description)/urdf/materials.xacro" />
 
     <xacro:property name="PI" value="3.14159" />
     <xacro:property name="effort" value="30.0" />
@@ -45,6 +46,7 @@
                 <mesh filename="package://robotarm_description/meshes/basement.STL"
                     scale="0.01 0.01 0.01" />
             </geometry>
+            <material name="gray" />
         </visual>
 
         <collision>
@@ -72,6 +74,7 @@
                 <mesh filename="package://robotarm_description/meshes/base_plate.STL"
                     scale="0.01 0.01 0.01" />
             </geometry>
+            <material name="gray" />
         </visual>
 
         <collision>
@@ -100,6 +103,7 @@
                 <mesh filename="package://robotarm_description/meshes/forward_drive_arm.STL"
                     scale="0.01 0.01 0.01" />
             </geometry>
+            <material name="gray" />
         </visual>
 
         <collision>
@@ -128,6 +132,7 @@
                 <mesh filename="package://robotarm_description/meshes/horizontal_arm.STL"
                     scale="0.01 0.01 0.01" />
             </geometry>
+            <material name="gray" />
         </visual>
 
         <collision>
@@ -157,6 +162,7 @@
                 <mesh filename="package://robotarm_description/meshes/claw_support.STL"
                     scale="0.01 0.01 0.01" />
             </geometry>
+            <material name="gray" />
         </visual>
         <collision>
             <origin rpy="0 0 ${PI/2}" xyz="0 -0.05 -0.15" />
@@ -174,7 +180,7 @@
         <origin rpy="0 0 0" xyz="0 0.82 0" />
     </joint>
 
-    <link name="gripper_right">
+    <link name="gripper_left">
         <xacro:default_inertial mass="0.01" />
 
         <visual>
@@ -183,6 +189,7 @@
                 <mesh filename="package://robotarm_description/meshes/right_finger.STL"
                     scale="0.01 0.01 0.01" />
             </geometry>
+            <material name="gray" />
         </visual>
 
         <collision>
@@ -194,7 +201,7 @@
         </collision>
     </link>
 
-    <link name="gripper_left">
+    <link name="gripper_right">
         <xacro:default_inertial mass="0.01" />
 
         <visual>
@@ -203,6 +210,7 @@
                 <mesh filename="package://robotarm_description/meshes/left_finger.STL"
                     scale="0.01 0.01 0.01" />
             </geometry>
+            <material name="gray" />
         </visual>
 
         <collision>
@@ -216,7 +224,7 @@
 
     <joint name="joint_4" type="revolute">
         <parent link="claw_support" />
-        <child link="gripper_right" />
+        <child link="gripper_left" />
         <origin rpy="0 0 0" xyz="-0.04 0.13 -0.1" />
         <axis xyz="0 0 1" />
         <limit lower="-${PI/2}" upper="0.0" effort="${effort}" velocity="${velocity}" />
@@ -224,8 +232,8 @@
 
     <joint name="joint_5" type="revolute">
         <parent link="claw_support" />
-        <child link="gripper_left" />
-        <origin rpy="0 0 0" xyz="-0.04 0.13 -0.1" />
+        <child link="gripper_right" />
+        <origin rpy="0 0 0" xyz="-0.22 0.13 -0.1" />
         <axis xyz="0 0 1" />
         <limit lower="0.0" upper="${PI/2}" effort="${effort}" velocity="${velocity}" />
         <mimic joint="joint_4" multiplier="-1" />

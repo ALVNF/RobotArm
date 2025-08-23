@@ -20,4 +20,3 @@ moveit_simple_controller_manager:
     default: True
     joints:
       - joint_4
-      - joint_5

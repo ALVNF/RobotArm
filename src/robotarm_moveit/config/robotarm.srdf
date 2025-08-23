@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<robot name="robotarm">
+<robot name="arduinobot">
     <group name="arm">
         <joint name="virtual_joint" />
 
@@ -9,11 +9,13 @@
         <joint name="joint_3" />
 
         <joint name="horizontal_arm_to_claw_support" />
+
     </group>
 
     <group name="gripper">
         <joint name="joint_4" />
         <joint name="joint_5" />
+
     </group>
 
     <group_state name="home" group="arm">
@@ -21,6 +23,7 @@
         <joint name="joint_2" value="0" />
         <joint name="joint_3" value="0" />
     </group_state>
+
 
     <group_state name="home" group="gripper">
         <joint name="joint_4" value="0" />
@@ -38,6 +41,5 @@
     <disable_collisions link1="gripper_left" link2="horizontal_arm" reason="Never" />
     <disable_collisions link1="gripper_right" link2="horizontal_arm" reason="Never" />
     <disable_collisions link1="gripper_left" link2="gripper_right" reason="Never" />
-
 
 </robot>

@@ -75,8 +75,8 @@ namespace robotarm_controller
                 )
             );
         }
+        return command_interfaces;
     }
-
 
     CallbackReturn RobotarmInterface::on_activate(const rclcpp_lifecycle::State & previous_state)
     {
